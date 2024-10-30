@@ -28,7 +28,7 @@
 
 ### Ссылки
 
-- [Ссылка на проект](https://github.com/klekwedge/example)
+- [Ссылка на проект](https://github.com/klekwedge/react-task)
 - [Деплой](https://klekwedge-example.vercel.app/)
 
 ## Мой процесс
