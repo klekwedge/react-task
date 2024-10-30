@@ -10,10 +10,19 @@ import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Button from '../Button/Button';
 
+const ITEM_HEIGHT = 480;
+const BUFFER = 3;
+
 const RepoCard = observer(() => {
   const [currentPage, setCurrentPage] = useState(1);
-  // const [isFetching, setIsFetching] = useState(false);
   const { repositories, hasError, isLoading, getGitHubRepositories, deleteRepository } = RepositoryStore;
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const visibleStartIndex = Math.max(0, Math.floor(scrollPosition / ITEM_HEIGHT) - BUFFER);
+  const visibleEndIndex = Math.min(
+    repositories.length,
+    Math.floor((scrollPosition + window.innerHeight) / ITEM_HEIGHT) + BUFFER
+  );
 
   useEffect(() => {
     if (!isLoading) {
@@ -22,14 +31,15 @@ const RepoCard = observer(() => {
   }, [currentPage]);
 
   const handleScroll = useCallback(() => {
+    setScrollPosition(window.scrollY);
     if (
       window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight &&
       !isLoading &&
       !hasError
     ) {
-      setCurrentPage(currentPage + 1);
+      setCurrentPage((prevPage) => prevPage + 1);
     }
-  }, [isLoading]);
+  }, [isLoading, hasError]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -39,16 +49,18 @@ const RepoCard = observer(() => {
   }, [handleScroll]);
 
   return (
-    <div className={classes.repoList}>
-      {repositories.map((repository) => (
-        <div key={repository.id} className={classes.userCard}>
-          <img className={classes.avatar} src={repository.owner.avatar_url} alt="Avatar" />
-          <RepoTitle repository={repository} />
-          <RepoStat repository={repository} />
-          <RepoInfo />
-          <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
-        </div>
-      ))}
+    <div className={classes.repoList} style={{ height: repositories.length * ITEM_HEIGHT }}>
+      <div style={{ paddingTop: visibleStartIndex * ITEM_HEIGHT }}>
+        {repositories.slice(visibleStartIndex, visibleEndIndex).map((repository) => (
+          <div key={repository.id} className={classes.userCard} style={{ height: ITEM_HEIGHT }}>
+            <img className={classes.avatar} src={repository.owner.avatar_url} alt="Owner avatar" />
+            <RepoTitle repository={repository} />
+            <RepoStat repository={repository} />
+            <RepoInfo />
+            <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
+          </div>
+        ))}
+      </div>
       {isLoading && <Spinner />}
       {hasError && <ErrorMessage />}
     </div>
