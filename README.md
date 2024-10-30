@@ -1,6 +1,4 @@
-# Example
-
-**You can also read this README in [English](https://github.com/klekwedge/example/blob/main/README.EN.md).**
+# React task
 
 ## Оглавление
 
@@ -16,7 +14,9 @@
 
 **Для запуска проекта на вашем компьютере должны быть установлены [npm](https://nodejs.org/en/) и [git](https://git-scm.com/downloads)**
 
-1. Сделайте клон этого репозитория ```git clone https://github.com/klekwedge/example.git```
+> Версия Node: 20.18.0
+
+1. Сделайте клон этого репозитория ```git clone https://github.com/klekwedge/react-task.git```
 2. Установите все необходимые пакеты npm с помощью ```npm i```
 3. Запустите проект командой ```npm run dev```
 
