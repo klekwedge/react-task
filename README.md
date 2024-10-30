@@ -38,7 +38,7 @@
 - React
 - TypeScript
 - Mobx
-- SCSS
+- SCSS Modules
 - React Testing Library
 
 ## Автор

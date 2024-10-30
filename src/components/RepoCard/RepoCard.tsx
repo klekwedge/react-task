@@ -6,27 +6,25 @@ import RepoStat from '../RepoStat/RepoStat';
 import RepoTitle from '../RepoTitle/RepoTitle';
 import classes from './RepoCard.module.scss';
 import RepositoryStore from '../../store/RepositoryStore';
+import Spinner from '../Spinner/Spinner';
 
 const RepoCard = observer(() => {
-  const { repositories, getGitHubRepositories } = RepositoryStore;
+  const { repositories, isLoading, getGitHubRepositories } = RepositoryStore;
 
   useEffect(() => {
     getGitHubRepositories();
   }, []);
 
-  if (!repositories) {
-    return null;
+  if (isLoading) {
+    return <Spinner />;
   }
-
-  console.log(repositories[0]?.owner);
 
   return repositories.map((repository) => (
     <div key={repository.id} className={classes.userCard}>
       <img className={classes.avatar} src={repository.owner.avatar_url} alt="Avatar iamge" />
       <RepoTitle repository={repository} />
-      <RepoStat repository={repository}/>
+      <RepoStat repository={repository} />
       <RepoInfo />
-      {/* <span>Repository name: {repository.full_name}</span> */}
     </div>
   ));
 });
