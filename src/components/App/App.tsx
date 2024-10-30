@@ -1,5 +1,8 @@
+import List from "../List/List";
+
+
 function App() {
-  return <div>Hello</div>;
+  return <div><List/></div>;
 }
 
-export default App;
+export default List;
