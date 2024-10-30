@@ -5,7 +5,7 @@ import Header from './Header';
 describe('Header Component', () => {
   it('renders logo correctly', () => {
     const { getByText } = render(<Header />);
-    const logoElement = getByText('devfinder');
+    const logoElement = getByText('React task');
     expect(logoElement).toBeInTheDocument();
   });
 });

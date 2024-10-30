@@ -7,7 +7,7 @@ import { ReactComponent as CompanyIcon } from "../../../public/icon-company.svg"
 
 import InfoItem from '../InfoItem/InfoItem';
 
-import classes from './UserInfo.module.scss';
+import classes from './RepoInfo.module.scss';
 import { Icon } from '../../types';
 
 export interface UserInfoProps {
@@ -17,7 +17,7 @@ export interface UserInfoProps {
   blog?: string;
 }
 
-function UserInfo({ blog, company, location, twitter }: UserInfoProps) {
+function RepoInfo({ blog, company, location, twitter }: UserInfoProps) {
 
   const icons: Icon[] = [
     {
@@ -49,4 +49,4 @@ function UserInfo({ blog, company, location, twitter }: UserInfoProps) {
 }
 
 
-export default UserInfo;
+export default RepoInfo;

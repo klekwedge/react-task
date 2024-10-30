@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
-import UserInfo from '../UserInfo/UserInfo';
-import UserStat from '../UserStat/UserStat';
-import UserTitle from '../UserTitle/UserTitle';
-import classes from './UserCard.module.scss';
+import RepoInfo from '../RepoInfo/RepoInfo';
+import RepoStat from '../RepoStat/RepoStat';
+import RepoTitle from '../RepoTitle/RepoTitle';
+import classes from './RepoCard.module.scss';
 import RepositoryStore from '../../store/RepositoryStore';
 
 const UserCard = observer(() => {
@@ -23,9 +23,9 @@ const UserCard = observer(() => {
   return repositories.map((repository) => (
     <div key={repository.id} className={classes.userCard}>
       <img className={classes.avatar} src={repository.owner.avatar_url} alt="Avatar iamge" />
-      <UserTitle user={repository.owner} />
-      {/* <UserStat />
-      <UserInfo /> */}
+      <RepoTitle user={repository.owner} />
+      <RepoStat repository={repository}/>
+      <RepoInfo />
       <span>Repository name: {repository.full_name}</span>
     </div>
   ));

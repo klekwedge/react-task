@@ -1,6 +1,6 @@
 import Header from '../Header/Header';
 import Container from '../Container/Container';
-import UserCard from '../UserCard/UserCard';
+import UserCard from '../RepoCard/RepoCard';
 
 function App() {
   return <Container>

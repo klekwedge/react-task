@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import UserInfo from './UserInfo';
+import UserInfo from './RepoInfo';
 
 describe('UserInfo Component', () => {
   it('renders correct links when isLink is true', () => {

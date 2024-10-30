@@ -5,7 +5,7 @@ function Header() {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        devfinder
+        React task
       </div>
       <ThemeSwitcher />
     </header>
