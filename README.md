@@ -1,4 +1,4 @@
-# React task
+# React Task
 
 ## Оглавление
 
@@ -29,7 +29,7 @@
 ### Ссылки
 
 - [Ссылка на проект](https://github.com/klekwedge/react-task)
-- [Деплой](https://klekwedge-example.vercel.app/)
+- [Деплой](https://klekwedge-react-task.vercel.app/)
 
 ## Мой процесс
 
@@ -37,8 +37,9 @@
 
 - React
 - TypeScript
-- Redux Toolkit
+- Mobx
 - SCSS
+- React Testing Library
 
 ## Автор
 

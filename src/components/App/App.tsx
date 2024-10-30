@@ -1,8 +1,14 @@
-import List from "../List/List";
-
+import Search from '../Search/Search';
+import Header from '../Header/Header';
+import Container from '../Container/Container';
+import UserCard from '../UserCard/UserCard';
 
 function App() {
-  return <div><List/></div>;
+  return <Container>
+      <Header />
+      <Search />
+      <UserCard />
+    </Container>
 }
 
-export default List;
+export default App;

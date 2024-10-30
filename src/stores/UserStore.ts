@@ -1,9 +1,11 @@
 /* eslint-disable class-methods-use-this */
 import { makeAutoObservable, runInAction } from "mobx";
-import fetchRepositories from "../services/GitHubAPI";
+import fetchUser from "../services/GitHubAPI";
+import { LocalGithubUser } from "../types";
 
-class RepositoriesStore {
-    repositories = []
+
+class UserStore {
+    user: LocalGithubUser | null = null;
 
     isLoading = false;
 
@@ -15,7 +17,7 @@ class RepositoriesStore {
 
     getGitHubUser = async (userName: string) => {
         this.isLoading = true
-        const res = await fetchRepositories(userName)
+        const res = await fetchUser(userName)
 
         runInAction(() => {
             if (!res) {
@@ -23,13 +25,14 @@ class RepositoriesStore {
                 this.hasError = true;
             }
             else {
-                this.repositories = res;
+                this.user = res;
                 this.isLoading = false
                 this.hasError = false;
             }
+
         })
     }
 }
 
 
-export default new RepositoriesStore();
+export default new UserStore();

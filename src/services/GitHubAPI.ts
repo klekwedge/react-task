@@ -1,7 +1,7 @@
 import { RepositoriesResponse } from "../types";
 
 
-const fetchUser = async () => {
+const fetchRepositories = async () => {
     const url = 'https://api.github.com/search/repositories?q=javascript&sort=starts&order&page=2';
 
     const res = await fetch(url);
@@ -11,4 +11,4 @@ const fetchUser = async () => {
 };
 
 
-export default fetchUser;
+export default fetchRepositories;
