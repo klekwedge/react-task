@@ -7,7 +7,7 @@ import RepoTitle from '../RepoTitle/RepoTitle';
 import classes from './RepoCard.module.scss';
 import RepositoryStore from '../../store/RepositoryStore';
 
-const UserCard = observer(() => {
+const RepoCard = observer(() => {
   const { repositories, getGitHubRepositories } = RepositoryStore;
 
   useEffect(() => {
@@ -23,12 +23,12 @@ const UserCard = observer(() => {
   return repositories.map((repository) => (
     <div key={repository.id} className={classes.userCard}>
       <img className={classes.avatar} src={repository.owner.avatar_url} alt="Avatar iamge" />
-      <RepoTitle user={repository.owner} />
+      <RepoTitle repository={repository} />
       <RepoStat repository={repository}/>
       <RepoInfo />
-      <span>Repository name: {repository.full_name}</span>
+      {/* <span>Repository name: {repository.full_name}</span> */}
     </div>
   ));
 });
 
-export default UserCard;
+export default RepoCard;

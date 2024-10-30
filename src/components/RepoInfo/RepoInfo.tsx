@@ -10,14 +10,14 @@ import InfoItem from '../InfoItem/InfoItem';
 import classes from './RepoInfo.module.scss';
 import { Icon } from '../../types';
 
-export interface UserInfoProps {
+export interface RepoInfoProps {
   company?: string;
   location?: string;
   twitter?: string;
   blog?: string;
 }
 
-function RepoInfo({ blog, company, location, twitter }: UserInfoProps) {
+function RepoInfo({ blog, company, location, twitter }: RepoInfoProps) {
 
   const icons: Icon[] = [
     {

@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import classes from './RepoTitle.module.scss';
-import { Owner } from '../../types';
+import { Repository } from '../../types';
 
-const RepoTitle = observer(({ user }: { user: Owner }) => (
+const RepoTitle = observer(({ repository }: { repository: Repository }) => (
     <div className={classes.userTitle}>
-      <h2>{user.html_url}</h2>
-      <h3>{user.login}</h3>
+      <h2>{repository.name}</h2>
+      <h3>{repository.owner.login}</h3>
       {/* <span>{joinedDate}</span> */}
     </div>
   ));

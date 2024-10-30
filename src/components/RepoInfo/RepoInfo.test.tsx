@@ -1,10 +1,9 @@
-import React from 'react';
 import { render } from '@testing-library/react';
-import UserInfo from './RepoInfo';
+import RepoInfo from './RepoInfo';
 
-describe('UserInfo Component', () => {
+describe('RepoInfoInfo Component', () => {
   it('renders correct links when isLink is true', () => {
-    const { getByRole } = render(<UserInfo blog="https://example.com" />);
+    const { getByRole } = render(<RepoInfo blog="https://example.com" />);
     const blogLink = getByRole('link', { name: 'https://example.com' });
 
     expect(blogLink).toBeInTheDocument();
@@ -14,7 +13,7 @@ describe('UserInfo Component', () => {
   });
 
   it('renders correct text when isLink is false', () => {
-    const { getByText } = render(<UserInfo location="Sample Location" />);
+    const { getByText } = render(<RepoInfo location="Sample Location" />);
     const locationText = getByText('Sample Location');
 
     expect(locationText).toBeInTheDocument();
