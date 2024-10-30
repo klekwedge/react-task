@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import UserStore from '../../stores/UserStore';
+import UserStore from '../../store/RepositoryStore';
 import classes from './UserStat.module.scss';
 
 const UserStat = observer(() => {

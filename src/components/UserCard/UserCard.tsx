@@ -1,26 +1,34 @@
 import { observer } from 'mobx-react-lite';
-import UserStore from '../../stores/UserStore';
+import { useEffect } from 'react';
+
 import UserInfo from '../UserInfo/UserInfo';
 import UserStat from '../UserStat/UserStat';
 import UserTitle from '../UserTitle/UserTitle';
 import classes from './UserCard.module.scss';
+import RepositoryStore from '../../store/RepositoryStore';
 
 const UserCard = observer(() => {
-  const { user } = UserStore;
+  const { repositories, getGitHubRepositories } = RepositoryStore;
 
-  if (!user) {
+  useEffect(() => {
+    getGitHubRepositories();
+  }, []);
+
+  if (!repositories) {
     return null;
   }
 
-  return (
-    <div className={classes.userCard}>
-      <img className={classes.avatar} src={user.avatar} alt="Avatar iamge" />
-      <UserTitle />
-      <p className={`${classes.bio}${user.bio ? '' : ` ${classes.empty}`}`}>{user.bio || 'This profile has no bio'}</p>
-      <UserStat />
-      <UserInfo />
+  console.log(repositories[0]?.owner);
+
+  return repositories.map((repository) => (
+    <div key={repository.id} className={classes.userCard}>
+      <img className={classes.avatar} src={repository.owner.avatar_url} alt="Avatar iamge" />
+      <UserTitle user={repository.owner} />
+      {/* <UserStat />
+      <UserInfo /> */}
+      <span>Repository name: {repository.full_name}</span>
     </div>
-  );
+  ));
 });
 
 export default UserCard;
