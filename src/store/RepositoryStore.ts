@@ -3,7 +3,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 import fetchRepositories from "../services/GitHubAPI";
 import { Repository } from "../types";
 
-
 class RepositoryStore {
     repositories: Repository[] = [];
 
@@ -12,26 +11,45 @@ class RepositoryStore {
     hasError = false;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
 
     getGitHubRepositories = async (currentPage: number) => {
-        this.isLoading = true
+        this.isLoading = true;
 
         try {
-            const res = await fetchRepositories(currentPage)
+            const res = await fetchRepositories(currentPage);
 
             runInAction(() => {
                 this.repositories.push(...res);
-                this.isLoading = false
+                this.isLoading = false;
                 this.hasError = false;
-            })
+            });
         } catch (error) {
-            this.isLoading = false;
-            this.hasError = true;
+            runInAction(() => {
+                this.isLoading = false;
+                this.hasError = true;
+            });
         }
-    }
-}
+    };
 
+    editRepository = (id: number, updatedData: Partial<Repository>) => {
+        runInAction(() => {
+            const repoIndex = this.repositories.findIndex(repo => repo.id === id);
+            if (repoIndex !== -1) {
+                this.repositories[repoIndex] = {
+                    ...this.repositories[repoIndex],
+                    ...updatedData,
+                };
+            }
+        });
+    };
+
+    deleteRepository = (id: number) => {
+        runInAction(() => {
+            this.repositories = this.repositories.filter(repo => repo.id !== id);
+        });
+    };
+}
 
 export default new RepositoryStore();

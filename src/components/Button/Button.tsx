@@ -8,7 +8,7 @@ interface ButtonProps {
 
 function Button({ children, onClick }: ButtonProps) {
   return (
-    <button type='submit' className={classes.button} onClick={onClick}>
+    <button type='button' className={classes.button} onClick={onClick}>
       {children}
     </button>
   )

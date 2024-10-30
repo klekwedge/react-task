@@ -8,23 +8,24 @@ import classes from './RepoCard.module.scss';
 import RepositoryStore from '../../store/RepositoryStore';
 import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Button from '../Button/Button';
 
 const RepoCard = observer(() => {
   const [currentPage, setCurrentPage] = useState(1);
   // const [isFetching, setIsFetching] = useState(false);
-  const { repositories, hasError, isLoading, getGitHubRepositories } = RepositoryStore;
+  const { repositories, hasError, isLoading, getGitHubRepositories, deleteRepository } = RepositoryStore;
 
   useEffect(() => {
-    if(!isLoading){
+    if (!isLoading) {
       getGitHubRepositories(currentPage);
     }
   }, [currentPage]);
 
   const handleScroll = useCallback(() => {
     if (
-      window.innerHeight + document.documentElement.scrollTop + 100 >=
-      document.documentElement.offsetHeight &&
-      !isLoading
+      window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight &&
+      !isLoading &&
+      !hasError
     ) {
       setCurrentPage(currentPage + 1);
     }
@@ -37,14 +38,6 @@ const RepoCard = observer(() => {
     };
   }, [handleScroll]);
 
-  if (isLoading && currentPage === 1) {
-    return <Spinner />;
-  }
-
-  if (hasError) {
-    return <ErrorMessage />;
-  }
-
   return (
     <div className={classes.repoList}>
       {repositories.map((repository) => (
@@ -53,9 +46,11 @@ const RepoCard = observer(() => {
           <RepoTitle repository={repository} />
           <RepoStat repository={repository} />
           <RepoInfo />
+          <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
         </div>
       ))}
       {isLoading && <Spinner />}
+      {hasError && <ErrorMessage />}
     </div>
   );
 });
