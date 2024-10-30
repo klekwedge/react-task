@@ -7,9 +7,10 @@ import RepoTitle from '../RepoTitle/RepoTitle';
 import classes from './RepoCard.module.scss';
 import RepositoryStore from '../../store/RepositoryStore';
 import Spinner from '../Spinner/Spinner';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const RepoCard = observer(() => {
-  const { repositories, isLoading, getGitHubRepositories } = RepositoryStore;
+  const { repositories, hasError, isLoading, getGitHubRepositories } = RepositoryStore;
 
   useEffect(() => {
     getGitHubRepositories();
@@ -17,6 +18,10 @@ const RepoCard = observer(() => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (true) {
+    return <ErrorMessage />;
   }
 
   return repositories.map((repository) => (

@@ -17,22 +17,20 @@ class RepositoryStore {
 
     getGitHubRepositories = async () => {
         this.isLoading = true
-        const res = await fetchRepositories()
 
-        console.log(res)
+        try {
+            const res = await fetchRepositories()
+            console.log(res)
 
-        runInAction(() => {
-            if (!res) {
-                this.isLoading = false;
-                this.hasError = true;
-            }
-            else {
+            runInAction(() => {
                 this.repositories = res;
                 this.isLoading = false
                 this.hasError = false;
-            }
-
-        })
+            })
+        } catch (error) {
+            this.isLoading = false;
+            this.hasError = true;
+        }
     }
 }
 
