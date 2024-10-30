@@ -1,4 +1,4 @@
-import { RepositoriesResponse } from "../../types";
+import { RepositoriesResponse } from "../types";
 
 
 const fetchUser = async () => {
