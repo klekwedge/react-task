@@ -1,4 +1,4 @@
-export interface FetchRepositoriesResponse {
+export interface RepositoriesResponse {
     total_count: number;
     incomplete_results: boolean;
     items: Repository[];
