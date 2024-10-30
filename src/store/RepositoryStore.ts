@@ -20,10 +20,9 @@ class RepositoryStore {
 
         try {
             const res = await fetchRepositories(currentPage)
-            console.log(res)
 
             runInAction(() => {
-                this.repositories = res;
+                this.repositories.push(...res);
                 this.isLoading = false
                 this.hasError = false;
             })
