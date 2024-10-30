@@ -15,11 +15,11 @@ class RepositoryStore {
         makeAutoObservable(this)
     }
 
-    getGitHubRepositories = async () => {
+    getGitHubRepositories = async (currentPage: number) => {
         this.isLoading = true
 
         try {
-            const res = await fetchRepositories()
+            const res = await fetchRepositories(currentPage)
             console.log(res)
 
             runInAction(() => {
