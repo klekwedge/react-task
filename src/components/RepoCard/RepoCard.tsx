@@ -1,14 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState, useCallback } from 'react';
 
-import RepoInfo from '../RepoInfo/RepoInfo';
+import { Button } from '@mantine/core';
+
 import RepoStat from '../RepoStat/RepoStat';
 import RepoTitle from '../RepoTitle/RepoTitle';
 import classes from './RepoCard.module.scss';
 import RepositoryStore from '../../store/RepositoryStore';
 import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import Button from '../Button/Button';
 
 const ITEM_HEIGHT = 480;
 const BUFFER = 3;
@@ -56,7 +56,6 @@ const RepoCard = observer(() => {
             <img className={classes.avatar} src={repository.owner.avatar_url} alt="Owner avatar" />
             <RepoTitle repository={repository} />
             <RepoStat repository={repository} />
-            <RepoInfo />
             <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
           </div>
         ))}

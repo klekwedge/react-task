@@ -6,7 +6,6 @@ const RepoTitle = observer(({ repository }: { repository: Repository }) => (
     <div className={classes.userTitle}>
       <h2>{repository.name}</h2>
       <h3>{repository.owner.login}</h3>
-      {/* <span>{joinedDate}</span> */}
     </div>
   ));
 

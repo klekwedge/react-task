@@ -1,12 +1,21 @@
+import { Container, MantineProvider } from '@mantine/core';
+import { useState } from 'react';
+
 import Header from '../Header/Header';
-import Container from '../Container/Container';
 import RepoCard from '../RepoCard/RepoCard';
 
+import '@mantine/core/styles.css';
+
 function App() {
-  return <Container>
-      <Header />
-      <RepoCard />
-    </Container>
+
+  return (
+      <MantineProvider>
+      <Container maw='700px'>
+        <Header />
+        <RepoCard />
+      </Container>
+      </MantineProvider>
+  );
 }
 
 export default App;
