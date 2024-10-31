@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState, useCallback } from 'react';
 
-import { ActionIcon, Button, Card, Flex, Image } from '@mantine/core';
-import { IconTrashFilled } from '@tabler/icons-react';
+import { ActionIcon, Card, Flex, Image } from '@mantine/core';
+import { MdDelete, MdModeEdit } from 'react-icons/md';
 
 import RepoTitle from '../RepoTitle/RepoTitle';
 import RepositoryStore from '../../store/RepositoryStore';
@@ -58,12 +58,14 @@ const RepoCard = observer(() => {
               <RepoTitle repository={repository} />
             </Flex>
             <RepoStats repository={repository} />
-            <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} maw="100">
-              <IconTrashFilled style={{ width: '70%', height: '70%' }} stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} maw="100">
-              <IconTrashFilled style={{ width: '70%', height: '70%' }} stroke={1.5} />
-            </ActionIcon>
+            <Flex w="100%" gap="10" justify="flex-end">
+              <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} size={38}>
+                <MdDelete size={30} />
+              </ActionIcon>
+              <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} size={38}>
+                <MdModeEdit size={30} />
+              </ActionIcon>
+            </Flex>
           </Card>
         ))}
       </Flex>
