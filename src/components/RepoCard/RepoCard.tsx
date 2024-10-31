@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState, useCallback } from 'react';
 
-import { Button, Card, Flex, Image } from '@mantine/core';
+import { ActionIcon, Button, Card, Flex, Image } from '@mantine/core';
+import { IconTrashFilled } from '@tabler/icons-react';
 
 import RepoTitle from '../RepoTitle/RepoTitle';
 import RepositoryStore from '../../store/RepositoryStore';
@@ -52,12 +53,17 @@ const RepoCard = observer(() => {
       <Flex direction="column" gap="40">
         {repositories.slice(visibleStartIndex, visibleEndIndex).map((repository) => (
           <Card key={repository.id} shadow="sm" padding="xl" withBorder>
-            <Flex gap='20'>
-              <Image radius="lg" src={repository.owner.avatar_url} w={100} alt="Owner avatar"/>
+            <Flex gap="20">
+              <Image radius="lg" src={repository.owner.avatar_url} w={100} alt="Owner avatar" />
               <RepoTitle repository={repository} />
             </Flex>
             <RepoStats repository={repository} />
-            <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
+            <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} maw="100">
+              <IconTrashFilled style={{ width: '70%', height: '70%' }} stroke={1.5} />
+            </ActionIcon>
+            <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} maw="100">
+              <IconTrashFilled style={{ width: '70%', height: '70%' }} stroke={1.5} />
+            </ActionIcon>
           </Card>
         ))}
       </Flex>

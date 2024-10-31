@@ -8,7 +8,7 @@ const stats = ['Watchers', 'Forks', 'Open issues'];
 const RepoStats = observer(({ repository }: { repository: Repository }) => (
   <Flex align="center" w="100%" p="10 0" gap="20">
     {stats.map((stat) => (
-      <Flex key={stat} direction="column" flex="1 1 33%" bg="blue.5" p="10 15">
+      <Flex key={stat} direction="column" flex="1 1 33%" p="10 15">
         <Title order={3} fz="18">
           {stat}
         </Title>
