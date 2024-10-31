@@ -34,7 +34,7 @@ const RepoTitle = observer(({ repository }: { repository: Repository }) => {
       <Flex justify="space-between" w="100%">
         {editId === repository.id ? (
           <TextInput
-          size='md'
+            size="md"
             value={newTitle}
             onChange={handleTitleChange}
             onBlur={() => handleTitleSave(repository)}

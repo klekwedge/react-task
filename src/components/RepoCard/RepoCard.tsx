@@ -10,7 +10,7 @@ import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import RepoStats from '../RepoStats/RepoStats';
 
-const ITEM_HEIGHT = 480;
+const ITEM_HEIGHT = 300;
 const BUFFER = 3;
 
 const RepoCard = observer(() => {
@@ -52,21 +52,23 @@ const RepoCard = observer(() => {
 
   return (
     <>
-      <Flex direction="column" gap="40">
-        {repositories.slice(visibleStartIndex, visibleEndIndex).map((repository) => (
-          <Card key={repository.id} shadow="sm" padding="xl" withBorder>
-            <Flex gap="20">
-              <Image radius="lg" src={repository.owner.avatar_url} w={100} alt="Owner avatar" />
-              <RepoTitle repository={repository}/>
-            </Flex>
-            <RepoStats repository={repository} />
-            <Flex w="100%" gap="10" justify="flex-end">
-              <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} size={38}>
-                <MdDelete size={30} />
-              </ActionIcon>
-            </Flex>
-          </Card>
-        ))}
+      <Flex direction="column" style={{ height: repositories.length * ITEM_HEIGHT }}>
+        <div style={{ paddingTop: visibleStartIndex * ITEM_HEIGHT }}>
+          {repositories.slice(visibleStartIndex, visibleEndIndex).map((repository) => (
+            <Card key={repository.id} shadow="sm" padding="xl" withBorder style={{ height: ITEM_HEIGHT }} mb='30'>
+              <Flex gap="20">
+                <Image radius="lg" src={repository.owner.avatar_url} w="100" alt="Owner avatar" />
+                <RepoTitle repository={repository} />
+              </Flex>
+              <RepoStats repository={repository} />
+              <Flex w="100%" gap="10" justify="flex-end">
+                <ActionIcon variant="filled" onClick={() => deleteRepository(repository.id)} size={38}>
+                  <MdDelete size={30} />
+                </ActionIcon>
+              </Flex>
+            </Card>
+          ))}
+        </div>
       </Flex>
       {isLoading && <Spinner />}
       {hasError && <ErrorMessage />}
