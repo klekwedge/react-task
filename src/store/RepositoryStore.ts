@@ -33,13 +33,13 @@ class RepositoryStore {
         }
     };
 
-    editRepository = (id: number, updatedData: Partial<Repository>) => {
+    editRepository = (id: number, newName: string) => {
         runInAction(() => {
             const repoIndex = this.repositories.findIndex(repo => repo.id === id);
             if (repoIndex !== -1) {
                 this.repositories[repoIndex] = {
                     ...this.repositories[repoIndex],
-                    ...updatedData,
+                    name: newName,
                 };
             }
         });
