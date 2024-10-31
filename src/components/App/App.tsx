@@ -1,5 +1,4 @@
 import { Container, MantineProvider } from '@mantine/core';
-import { useState } from 'react';
 
 import Header from '../Header/Header';
 import RepoCard from '../RepoCard/RepoCard';
@@ -7,14 +6,13 @@ import RepoCard from '../RepoCard/RepoCard';
 import '@mantine/core/styles.css';
 
 function App() {
-
   return (
-      <MantineProvider>
-      <Container maw='700px'>
+    <MantineProvider>
+      <Container maw="600px" fluid>
         <Header />
         <RepoCard />
       </Container>
-      </MantineProvider>
+    </MantineProvider>
   );
 }
 

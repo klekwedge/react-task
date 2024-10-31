@@ -1,11 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState, useCallback } from 'react';
 
-import { Button } from '@mantine/core';
+import { Avatar, Button, Card, Flex } from '@mantine/core';
 
 import RepoStat from '../RepoStat/RepoStat';
 import RepoTitle from '../RepoTitle/RepoTitle';
-import classes from './RepoCard.module.scss';
 import RepositoryStore from '../../store/RepositoryStore';
 import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -21,7 +20,7 @@ const RepoCard = observer(() => {
   const visibleStartIndex = Math.max(0, Math.floor(scrollPosition / ITEM_HEIGHT) - BUFFER);
   const visibleEndIndex = Math.min(
     repositories.length,
-    Math.floor((scrollPosition + window.innerHeight) / ITEM_HEIGHT) + BUFFER
+    Math.floor((scrollPosition + window.innerHeight) / ITEM_HEIGHT) + BUFFER,
   );
 
   useEffect(() => {
@@ -49,20 +48,20 @@ const RepoCard = observer(() => {
   }, [handleScroll]);
 
   return (
-    <div className={classes.repoList} style={{ height: repositories.length * ITEM_HEIGHT }}>
-      <div style={{ paddingTop: visibleStartIndex * ITEM_HEIGHT }}>
+    <>
+      <Flex direction='column' gap='40'>
         {repositories.slice(visibleStartIndex, visibleEndIndex).map((repository) => (
-          <div key={repository.id} className={classes.userCard} style={{ height: ITEM_HEIGHT }}>
-            <img className={classes.avatar} src={repository.owner.avatar_url} alt="Owner avatar" />
-            <RepoTitle repository={repository} />
-            <RepoStat repository={repository} />
-            <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
-          </div>
+          <Card key={repository.id} shadow="sm" padding="xl" withBorder>
+            <Avatar radius="sm" src={repository.owner.avatar_url} w={160} />
+              <RepoTitle repository={repository} />
+              <RepoStat repository={repository} />
+              <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
+          </Card>
         ))}
-      </div>
+      </Flex>
       {isLoading && <Spinner />}
       {hasError && <ErrorMessage />}
-    </div>
+    </>
   );
 });
 
