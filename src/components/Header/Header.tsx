@@ -1,11 +1,12 @@
+import { Flex } from "@mantine/core";
 
 function Header() {
   return (
-    <header>
+    <Flex>
       <div>
         React task
       </div>
-    </header>
+    </Flex>
   )
 }
 

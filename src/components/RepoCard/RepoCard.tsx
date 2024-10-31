@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState, useCallback } from 'react';
 
-import { Avatar, Button, Card, Flex } from '@mantine/core';
+import { Button, Card, Flex, Image } from '@mantine/core';
 
-import RepoStat from '../RepoStat/RepoStat';
 import RepoTitle from '../RepoTitle/RepoTitle';
 import RepositoryStore from '../../store/RepositoryStore';
 import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import RepoStats from '../RepoStats/RepoStats';
 
 const ITEM_HEIGHT = 480;
 const BUFFER = 3;
@@ -49,13 +49,15 @@ const RepoCard = observer(() => {
 
   return (
     <>
-      <Flex direction='column' gap='40'>
+      <Flex direction="column" gap="40">
         {repositories.slice(visibleStartIndex, visibleEndIndex).map((repository) => (
           <Card key={repository.id} shadow="sm" padding="xl" withBorder>
-            <Avatar radius="sm" src={repository.owner.avatar_url} w={160} />
+            <Flex gap='20'>
+              <Image radius="lg" src={repository.owner.avatar_url} w={100} alt="Owner avatar"/>
               <RepoTitle repository={repository} />
-              <RepoStat repository={repository} />
-              <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
+            </Flex>
+            <RepoStats repository={repository} />
+            <Button onClick={() => deleteRepository(repository.id)}>Delete</Button>
           </Card>
         ))}
       </Flex>

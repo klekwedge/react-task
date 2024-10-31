@@ -8,7 +8,7 @@ import '@mantine/core/styles.css';
 function App() {
   return (
     <MantineProvider>
-      <Container maw="600px" fluid>
+      <Container maw="600px" p='20px 0px'>
         <Header />
         <RepoCard />
       </Container>

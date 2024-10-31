@@ -5,10 +5,10 @@ import { Repository } from '../../types';
 
 const stats = ['Watchers', 'Forks', 'Open issues'];
 
-const RepoStat = observer(({ repository }: { repository: Repository }) => (
-  <Flex align="center" w="100%" p="lg" gap="20">
+const RepoStats = observer(({ repository }: { repository: Repository }) => (
+  <Flex align="center" w="100%" p="10 0" gap="20">
     {stats.map((stat) => (
-      <Flex key={stat} direction="column" flex="1 1 33%" bg="teal" p="10 15">
+      <Flex key={stat} direction="column" flex="1 1 33%" bg="blue.5" p="10 15">
         <Title order={3} fz="18">
           {stat}
         </Title>
@@ -18,4 +18,4 @@ const RepoStat = observer(({ repository }: { repository: Repository }) => (
   </Flex>
 ));
 
-export default RepoStat;
+export default RepoStats;
