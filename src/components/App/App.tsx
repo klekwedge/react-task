@@ -8,7 +8,7 @@ function App() {
   return (
     <MantineProvider>
       <Container maw="600px" p='20px 0px'>
-        <RepoCard />
+        <RepoCard data-testid="repo-card"/>
       </Container>
     </MantineProvider>
   );
